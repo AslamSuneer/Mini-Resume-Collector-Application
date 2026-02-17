@@ -15,17 +15,17 @@ UPLOAD_FOLDER = "resumes"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
-# ----------------------------
+
 # Health Check Endpoint
-# ----------------------------
+
 @app.get("/health", status_code=status.HTTP_200_OK)
 def health_check():
     return {"status": "healthy"}
 
 
-# ----------------------------
+
 # Candidate Response Model
-# ----------------------------
+
 class Candidate(BaseModel):
     id: str
     full_name: str = Field(..., min_length=2)
@@ -39,9 +39,8 @@ class Candidate(BaseModel):
     resume_filename: str
 
 
-# ----------------------------
-# 1️⃣ Upload Resume
-# ----------------------------
+# Upload Resume
+
 @app.post("/upload", status_code=status.HTTP_201_CREATED)
 async def upload_resume(
     full_name: str = Form(...),
@@ -95,9 +94,9 @@ async def upload_resume(
     }
 
 
-# ----------------------------
-# 2️⃣ List Candidates (with filters)
-# ----------------------------
+
+# List Candidates (with filters)
+
 @app.get("/candidates", response_model=List[Candidate])
 def list_candidates(
     skill: Optional[str] = None,
@@ -128,9 +127,9 @@ def list_candidates(
     return results
 
 
-# ----------------------------
-# 3️⃣ Get Candidate by ID
-# ----------------------------
+
+#  Get Candidate by ID
+
 @app.get("/candidates/{candidate_id}", response_model=Candidate)
 def get_candidate(candidate_id: str):
     candidate = candidates.get(candidate_id)
@@ -144,9 +143,8 @@ def get_candidate(candidate_id: str):
     return candidate
 
 
-# ----------------------------
-# 4️⃣ Delete Candidate
-# ----------------------------
+#  Delete Candidate
+
 @app.delete("/candidates/{candidate_id}", status_code=status.HTTP_200_OK)
 def delete_candidate(candidate_id: str):
     candidate = candidates.get(candidate_id)
