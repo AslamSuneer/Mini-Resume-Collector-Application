@@ -61,14 +61,14 @@ Response:
 POST /upload
 
 Accepts the following form fields:
-Full Name
-DOB
-Contact Number
-Contact Address
-Education Qualification
-Graduation Year
-Years of Experience
-Skill Set
+Full Name,
+DOB,
+Contact Number,
+Contact Address,
+Education Qualification,
+Graduation Year,
+Years of Experience,
+Skill Set,
 Resume File (PDF/DOC/DOCX)
 
 Example response:
